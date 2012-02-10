@@ -1,0 +1,40 @@
+Index: tk8.5.9/unix/Makefile.in
+===================================================================
+--- tk8.5.9/unix/Makefile.in
++++ tk8.5.9/unix/Makefile.in
+@@ -724,7 +724,10 @@ install-binaries: $(TK_LIB_FILE) $(TK_ST
+ 	    fi
+ 	@echo "Installing $(LIB_FILE) to $(LIB_INSTALL_DIR)/"
+ 	@@INSTALL_LIB@
+-	@chmod 555 "$(LIB_INSTALL_DIR)"/$(LIB_FILE)
++	mv "$(LIB_INSTALL_DIR)"/$(LIB_FILE) "$(LIB_INSTALL_DIR)"/$(LIB_FILE).0
++	ln -sf $(LIB_FILE).0 "$(LIB_INSTALL_DIR)"/$(LIB_FILE)
++	ln -sf "$(LIB_INSTALL_DIR)"/$(LIB_FILE).0 ./
++	@chmod 555 "$(LIB_INSTALL_DIR)"/$(LIB_FILE).0
+ 	@echo "Installing wish@EXEEXT@ as $(BIN_INSTALL_DIR)/wish$(VERSION)@EXEEXT@"
+ 	@$(INSTALL_PROGRAM) wish@EXEEXT@ "$(BIN_INSTALL_DIR)"/wish$(VERSION)@EXEEXT@
+ 	@echo "Installing tkConfig.sh to $(CONFIG_INSTALL_DIR)/"
+Index: tk8.5.9/unix/configure
+===================================================================
+--- tk8.5.9/unix/configure
++++ tk8.5.9/unix/configure
+@@ -7566,6 +7566,7 @@ fi
+ 
+ 	    SHLIB_LD_LIBS='${LIBS}'
+ 	    SHLIB_SUFFIX=".so"
++	    TK_SHLIB_LD_EXTRAS="-Wl,-soname,\${TK_LIB_FILE}.0"
+ 	    DL_OBJS="tclLoadDl.o"
+ 	    DL_LIBS="-ldl"
+ 	    if test "$GCC" = yes; then
+Index: tk8.5.9/unix/tcl.m4
+===================================================================
+--- tk8.5.9/unix/tcl.m4
++++ tk8.5.9/unix/tcl.m4
+@@ -1985,6 +1985,7 @@ dnl AC_CHECK_TOOL(AR, ar)
+ 
+ 	    SHLIB_LD_LIBS='${LIBS}'
+ 	    SHLIB_SUFFIX=".so"
++	    TK_SHLIB_LD_EXTRAS="-Wl,-soname,\${TK_LIB_FILE}.0"
+ 	    DL_OBJS="tclLoadDl.o"
+ 	    DL_LIBS="-ldl"
+ 	    AS_IF([test "$GCC" = yes], [

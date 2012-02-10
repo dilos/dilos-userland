@@ -1,0 +1,22 @@
+Index: filter/Makefile
+===================================================================
+--- filter/Makefile
++++ filter/Makefile
+@@ -341,7 +341,7 @@ libcupsimage.so.2 libcupsimage.sl.2:	$(I
+ 
+ 32bit/libcupsimage.so.2:	$(IMAGE32OBJS)
+ 	echo Linking 32-bit $@...
+-	-mkdir 32bit
++	-mkdir -p 32bit
+ 	$(DSO) $(ARCH32FLAGS) $(DSO32FLAGS) -o $@ $(IMAGE32OBJS) $(DSOLIBS) \
+ 		-L../cups/32bit $(LINKCUPS) -lm
+ 
+@@ -352,7 +352,7 @@ libcupsimage.so.2 libcupsimage.sl.2:	$(I
+ 
+ 64bit/libcupsimage.so.2:	$(IMAGE64OBJS)
+ 	echo Linking 64-bit $@...
+-	-mkdir 64bit
++	-mkdir -p 64bit
+ 	$(DSO) $(ARCH64FLAGS) $(DSO64FLAGS) -o $@ $(IMAGE64OBJS) $(DSOLIBS) \
+ 		-L../cups/64bit $(LINKCUPS) -lm
+ 

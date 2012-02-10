@@ -1,0 +1,22 @@
+Index: gcc-4.6.2/gcc/config/sparc/sol2-bi.h
+===================================================================
+--- gcc-4.6.2/gcc/config/sparc/sol2-bi.h
++++ gcc-4.6.2/gcc/config/sparc/sol2-bi.h
+@@ -195,12 +195,12 @@ see the files COPYING3 and COPYING.RUNTI
+    %{YP,*} \
+    %{R*} \
+    %{compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,%R/usr/ucblib/sparcv9:%R/usr/lib/libp/sparcv9:%R/usr/lib/sparcv9} \
+-       %{!p:%{!pg:-Y P,%R/usr/ucblib/sparcv9:%R/usr/lib/sparcv9}}} \
+-     -R %R/usr/ucblib/sparcv9} \
++     %{!YP,*:%{p|pg:-Y P,/usr/ucblib/64:/usr/lib/libp/64:/lib/64:/usr/lib/64:/usr/gnu/lib/64:/usr/gcc/4.6/lib/64 -R /usr/ucblib/64:/usr/lib/libp/64:/lib/64:/usr/lib/64:/usr/gnu/lib/64:/usr/gcc/4.6/lib/64} \
++       %{!p:%{!pg:-Y P,/usr/ucblib/64:/lib/64:/usr/lib/64:/usr/gnu/lib/64:/usr/gcc/4.6/lib/64 -R /usr/ucblib/64:/lib/64:/usr/lib/64:/usr/gnu/lib/64:/usr/gcc/4.6/lib/64}}} \
++     } \
+    %{!compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,%R/usr/lib/libp/sparcv9:%R/usr/lib/sparcv9} \
+-       %{!p:%{!pg:-Y P,%R/usr/lib/sparcv9}}}}"
++     %{!YP,*:%{p|pg:-Y P,/usr/lib/libp/64:/lib/64:/usr/lib/64:/usr/gnu/lib/64:/usr/gcc/4.6/lib/64 -R /usr/lib/libp/64:/lib/64:/usr/lib/64:/usr/gnu/lib/64:/usr/gcc/4.6/lib/64} \
++       %{!p:%{!pg:-Y P,/lib/64:/usr/lib/64:/usr/gnu/lib/64:/usr/gcc/4.6/lib/64 -R /lib/64:/usr/lib/64:/usr/gnu/lib/64:/usr/gcc/4.6/lib/64}}}}"
+ 
+ #define LINK_ARCH64_SPEC LINK_ARCH64_SPEC_BASE
+ 

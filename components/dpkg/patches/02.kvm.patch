@@ -1,0 +1,13 @@
+Index: dpkg-1.15.8.10/config.h.in
+===================================================================
+--- dpkg-1.15.8.10/config.h.in
++++ dpkg-1.15.8.10/config.h.in
+@@ -75,7 +75,7 @@
+ #undef HAVE_ISASCII
+ 
+ /* Define to 1 if you have the <kvm.h> header file. */
+-#undef HAVE_KVM_H
++/* #undef HAVE_KVM_H */
+ 
+ /* Define to 1 if you have the <libintl.h> header file. */
+ #undef HAVE_LIBINTL_H

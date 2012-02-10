@@ -1,0 +1,382 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+# Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
+#
+
+<transform file path=usr.*/man/.+ -> default mangler.man.stability uncommitted>
+<transform file -> add pkg.depend.bypass-generate usr/sfw/lib(.*)/lib(.*)>
+set name=pkg.fmri \
+    value=pkg:/text/gnu-gettext@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.description value="GNU gettext - message handling utilities"
+set name=pkg.summary value="GNU gettext"
+set name=info.classification \
+    value=org.opensolaris.category.2008:Development/GNU
+set name=info.source_url value=$(COMPONENT_ARCHIVE_URL)
+set name=info.upstream_url value=http://www.gnu.org/software/gettext/
+set name=opensolaris.arc_url \
+    value=http://arc.opensolaris.org/caselog/PSARC/2007/635
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+dir path=usr
+dir path=usr/bin
+dir path=usr/gnu
+dir path=usr/gnu/bin
+dir path=usr/gnu/share
+dir path=usr/gnu/share/man
+dir path=usr/gnu/share/man/man1
+dir path=usr/lib
+dir path=usr/lib/gettext
+dir path=usr/share
+dir path=usr/share/aclocal
+dir path=usr/share/gettext
+dir path=usr/share/gettext/intl
+dir path=usr/share/gettext/po
+dir path=usr/share/gettext/projects
+dir path=usr/share/gettext/projects/GNOME
+dir path=usr/share/gettext/projects/KDE
+dir path=usr/share/gettext/projects/TP
+dir path=usr/share/info
+dir path=usr/share/locale
+dir path=usr/share/locale/be
+dir path=usr/share/locale/be/LC_MESSAGES
+dir path=usr/share/locale/ca
+dir path=usr/share/locale/ca/LC_MESSAGES
+dir path=usr/share/locale/cs
+dir path=usr/share/locale/cs/LC_MESSAGES
+dir path=usr/share/locale/da
+dir path=usr/share/locale/da/LC_MESSAGES
+dir path=usr/share/locale/de
+dir path=usr/share/locale/de/LC_MESSAGES
+dir path=usr/share/locale/el
+dir path=usr/share/locale/el/LC_MESSAGES
+dir path=usr/share/locale/en@boldquot
+dir path=usr/share/locale/en@boldquot/LC_MESSAGES
+dir path=usr/share/locale/en@quot
+dir path=usr/share/locale/en@quot/LC_MESSAGES
+dir path=usr/share/locale/eo
+dir path=usr/share/locale/eo/LC_MESSAGES
+dir path=usr/share/locale/es
+dir path=usr/share/locale/es/LC_MESSAGES
+dir path=usr/share/locale/et
+dir path=usr/share/locale/et/LC_MESSAGES
+dir path=usr/share/locale/fi
+dir path=usr/share/locale/fi/LC_MESSAGES
+dir path=usr/share/locale/fr
+dir path=usr/share/locale/fr/LC_MESSAGES
+dir path=usr/share/locale/ga
+dir path=usr/share/locale/ga/LC_MESSAGES
+dir path=usr/share/locale/gl
+dir path=usr/share/locale/gl/LC_MESSAGES
+dir path=usr/share/locale/id
+dir path=usr/share/locale/id/LC_MESSAGES
+dir path=usr/share/locale/it
+dir path=usr/share/locale/it/LC_MESSAGES
+dir path=usr/share/locale/ja
+dir path=usr/share/locale/ja/LC_MESSAGES
+dir path=usr/share/locale/ko
+dir path=usr/share/locale/ko/LC_MESSAGES
+dir path=usr/share/locale/nl
+dir path=usr/share/locale/nl/LC_MESSAGES
+dir path=usr/share/locale/nn
+dir path=usr/share/locale/nn/LC_MESSAGES
+dir path=usr/share/locale/no
+dir path=usr/share/locale/no/LC_MESSAGES
+dir path=usr/share/locale/pl
+dir path=usr/share/locale/pl/LC_MESSAGES
+dir path=usr/share/locale/pt
+dir path=usr/share/locale/pt/LC_MESSAGES
+dir path=usr/share/locale/pt_BR
+dir path=usr/share/locale/pt_BR/LC_MESSAGES
+dir path=usr/share/locale/ro
+dir path=usr/share/locale/ro/LC_MESSAGES
+dir path=usr/share/locale/ru
+dir path=usr/share/locale/ru/LC_MESSAGES
+dir path=usr/share/locale/sk
+dir path=usr/share/locale/sk/LC_MESSAGES
+dir path=usr/share/locale/sl
+dir path=usr/share/locale/sl/LC_MESSAGES
+dir path=usr/share/locale/sr
+dir path=usr/share/locale/sr/LC_MESSAGES
+dir path=usr/share/locale/sv
+dir path=usr/share/locale/sv/LC_MESSAGES
+dir path=usr/share/locale/tr
+dir path=usr/share/locale/tr/LC_MESSAGES
+dir path=usr/share/locale/uk
+dir path=usr/share/locale/uk/LC_MESSAGES
+dir path=usr/share/locale/vi
+dir path=usr/share/locale/vi/LC_MESSAGES
+dir path=usr/share/locale/zh_CN
+dir path=usr/share/locale/zh_CN/LC_MESSAGES
+dir path=usr/share/locale/zh_HK
+dir path=usr/share/locale/zh_HK/LC_MESSAGES
+dir path=usr/share/locale/zh_TW
+dir path=usr/share/locale/zh_TW/LC_MESSAGES
+dir path=usr/share/man
+dir path=usr/share/man/man1
+file path=usr/bin/autopoint
+file path=usr/bin/envsubst
+file path=usr/bin/gettext.sh
+file path=usr/bin/gettextize
+file usr/bin/gettext path=usr/gnu/bin/gettext
+file usr/bin/msgfmt path=usr/gnu/bin/msgfmt
+file usr/bin/xgettext path=usr/gnu/bin/xgettext
+file path=usr/bin/msgattrib
+file path=usr/bin/msgcat
+file path=usr/bin/msgcmp
+file path=usr/bin/msgcomm
+file path=usr/bin/msgconv
+file path=usr/bin/msgen
+file path=usr/bin/msgexec
+file path=usr/bin/msgfilter
+file path=usr/bin/msggrep
+file path=usr/bin/msginit
+file path=usr/bin/msgmerge
+file path=usr/bin/msgunfmt
+file path=usr/bin/msguniq
+file path=usr/bin/ngettext
+file path=usr/bin/recode-sr-latin
+file path=usr/lib/gettext/hostname mode=0555
+file path=usr/lib/gettext/project-id mode=0555
+file path=usr/lib/gettext/urlget mode=0555
+file path=usr/lib/gettext/user-email mode=0555
+file path=usr/share/aclocal/codeset.m4
+file path=usr/share/aclocal/gettext.m4
+file path=usr/share/aclocal/glibc2.m4
+file path=usr/share/aclocal/glibc21.m4
+file path=usr/share/aclocal/iconv.m4
+file path=usr/share/aclocal/intdiv0.m4
+file path=usr/share/aclocal/intl.m4
+file path=usr/share/aclocal/intldir.m4
+file path=usr/share/aclocal/intmax.m4
+file path=usr/share/aclocal/inttypes-pri.m4
+file path=usr/share/aclocal/inttypes_h.m4
+file path=usr/share/aclocal/lcmessage.m4
+file path=usr/share/aclocal/lib-ld.m4
+file path=usr/share/aclocal/lib-link.m4
+file path=usr/share/aclocal/lib-prefix.m4
+file path=usr/share/aclocal/lock.m4
+file path=usr/share/aclocal/longdouble.m4
+file path=usr/share/aclocal/longlong.m4
+file path=usr/share/aclocal/nls.m4
+file path=usr/share/aclocal/po.m4
+file path=usr/share/aclocal/printf-posix.m4
+file path=usr/share/aclocal/progtest.m4
+file path=usr/share/aclocal/size_max.m4
+file path=usr/share/aclocal/stdint_h.m4
+file path=usr/share/aclocal/uintmax_t.m4
+file path=usr/share/aclocal/ulonglong.m4
+file path=usr/share/aclocal/visibility.m4
+file path=usr/share/aclocal/wchar_t.m4
+file path=usr/share/aclocal/wint_t.m4
+file path=usr/share/aclocal/xsize.m4
+file path=usr/share/gettext/ABOUT-NLS
+file path=usr/share/gettext/archive.tar.gz
+file path=usr/share/gettext/config.rpath mode=0555
+file path=usr/share/gettext/gettext.h
+file path=usr/share/gettext/intl/COPYING.LIB-2.0
+file path=usr/share/gettext/intl/COPYING.LIB-2.1
+file path=usr/share/gettext/intl/ChangeLog
+file path=usr/share/gettext/intl/Makefile.in
+file path=usr/share/gettext/intl/VERSION
+file path=usr/share/gettext/intl/bindtextdom.c
+file path=usr/share/gettext/intl/config.charset mode=0555
+file path=usr/share/gettext/intl/dcgettext.c
+file path=usr/share/gettext/intl/dcigettext.c
+file path=usr/share/gettext/intl/dcngettext.c
+file path=usr/share/gettext/intl/dgettext.c
+file path=usr/share/gettext/intl/dngettext.c
+file path=usr/share/gettext/intl/eval-plural.h
+file path=usr/share/gettext/intl/explodename.c
+file path=usr/share/gettext/intl/export.h
+file path=usr/share/gettext/intl/finddomain.c
+file path=usr/share/gettext/intl/gettext.c
+file path=usr/share/gettext/intl/gettextP.h
+file path=usr/share/gettext/intl/gmo.h
+file path=usr/share/gettext/intl/hash-string.c
+file path=usr/share/gettext/intl/hash-string.h
+file path=usr/share/gettext/intl/intl-compat.c
+file path=usr/share/gettext/intl/intl-exports.c
+file path=usr/share/gettext/intl/l10nflist.c
+file path=usr/share/gettext/intl/langprefs.c
+file path=usr/share/gettext/intl/libgnuintl.h.in
+file path=usr/share/gettext/intl/loadinfo.h
+file path=usr/share/gettext/intl/loadmsgcat.c
+file path=usr/share/gettext/intl/localcharset.c
+file path=usr/share/gettext/intl/localcharset.h
+file path=usr/share/gettext/intl/locale.alias
+file path=usr/share/gettext/intl/localealias.c
+file path=usr/share/gettext/intl/localename.c
+file path=usr/share/gettext/intl/lock.c
+file path=usr/share/gettext/intl/lock.h
+file path=usr/share/gettext/intl/log.c
+file path=usr/share/gettext/intl/ngettext.c
+file path=usr/share/gettext/intl/os2compat.c
+file path=usr/share/gettext/intl/os2compat.h
+file path=usr/share/gettext/intl/osdep.c
+file path=usr/share/gettext/intl/plural-exp.c
+file path=usr/share/gettext/intl/plural-exp.h
+file path=usr/share/gettext/intl/plural.c
+file path=usr/share/gettext/intl/plural.y
+file path=usr/share/gettext/intl/printf-args.c
+file path=usr/share/gettext/intl/printf-args.h
+file path=usr/share/gettext/intl/printf-parse.c
+file path=usr/share/gettext/intl/printf-parse.h
+file path=usr/share/gettext/intl/printf.c
+file path=usr/share/gettext/intl/ref-add.sin
+file path=usr/share/gettext/intl/ref-del.sin
+file path=usr/share/gettext/intl/relocatable.c
+file path=usr/share/gettext/intl/relocatable.h
+file path=usr/share/gettext/intl/textdomain.c
+file path=usr/share/gettext/intl/vasnprintf.c
+file path=usr/share/gettext/intl/vasnprintf.h
+file path=usr/share/gettext/intl/vasnwprintf.h
+file path=usr/share/gettext/intl/version.c
+file path=usr/share/gettext/intl/wprintf-parse.h
+file path=usr/share/gettext/intl/xsize.h
+file path=usr/share/gettext/javaversion.class
+file path=usr/share/gettext/msgunfmt.tcl
+file path=usr/share/gettext/po/Makefile.in.in
+file path=usr/share/gettext/po/Makevars.template
+file path=usr/share/gettext/po/Rules-quot
+file path=usr/share/gettext/po/boldquot.sed
+file path=usr/share/gettext/po/en@boldquot.header
+file path=usr/share/gettext/po/en@quot.header
+file path=usr/share/gettext/po/insert-header.sin
+file path=usr/share/gettext/po/quot.sed
+file path=usr/share/gettext/po/remove-potcdate.sin
+file path=usr/share/gettext/projects/GNOME/team-address mode=0555
+file path=usr/share/gettext/projects/GNOME/teams.html
+file path=usr/share/gettext/projects/GNOME/teams.url
+file path=usr/share/gettext/projects/GNOME/trigger mode=0555
+file path=usr/share/gettext/projects/KDE/team-address mode=0555
+file path=usr/share/gettext/projects/KDE/teams.html
+file path=usr/share/gettext/projects/KDE/teams.url
+file path=usr/share/gettext/projects/KDE/trigger mode=0555
+file path=usr/share/gettext/projects/TP/team-address mode=0555
+file path=usr/share/gettext/projects/TP/teams.html
+file path=usr/share/gettext/projects/TP/teams.url
+file path=usr/share/gettext/projects/TP/trigger mode=0555
+file path=usr/share/gettext/projects/index
+file path=usr/share/gettext/projects/team-address mode=0555
+#file path=usr/share/info/gettext.info
+file path=usr/share/locale/be/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/be/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/ca/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/ca/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/cs/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/cs/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/da/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/da/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/de/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/de/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/el/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/el/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/en@boldquot/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/en@boldquot/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/en@quot/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/en@quot/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/eo/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/es/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/es/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/et/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/et/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/fi/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/fi/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/fr/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/fr/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/ga/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/gl/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/gl/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/id/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/id/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/it/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/it/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/ja/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/ja/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/ko/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/ko/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/nl/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/nl/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/nn/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/nn/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/no/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/no/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/pl/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/pl/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/pt/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/pt/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/pt_BR/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/pt_BR/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/ro/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/ro/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/ru/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/ru/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/sk/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/sk/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/sl/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/sl/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/sr/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/sr/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/sv/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/sv/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/tr/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/tr/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/uk/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/uk/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/vi/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/vi/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/zh_CN/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/zh_CN/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/locale/zh_HK/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/zh_TW/LC_MESSAGES/gettext-runtime.mo
+file path=usr/share/locale/zh_TW/LC_MESSAGES/gettext-tools.mo
+file path=usr/share/man/man1/autopoint.1
+file path=usr/share/man/man1/envsubst.1
+file path=usr/share/man/man1/gettextize.1
+file usr/share/man/man1/gettext.1 path=usr/gnu/share/man/man1/gettext.1
+file usr/share/man/man1/msgfmt.1 path=usr/gnu/share/man/man1/msgfmt.1
+file usr/share/man/man1/xgettext.1 path=usr/gnu/share/man/man1/xgettext.1
+file path=usr/share/man/man1/msgattrib.1
+file path=usr/share/man/man1/msgcat.1
+file path=usr/share/man/man1/msgcmp.1
+file path=usr/share/man/man1/msgcomm.1
+file path=usr/share/man/man1/msgconv.1
+file path=usr/share/man/man1/msgen.1
+file path=usr/share/man/man1/msgexec.1
+file path=usr/share/man/man1/msgfilter.1
+file path=usr/share/man/man1/msggrep.1
+file path=usr/share/man/man1/msginit.1
+file path=usr/share/man/man1/msgmerge.1
+file path=usr/share/man/man1/msgunfmt.1
+file path=usr/share/man/man1/msguniq.1
+file path=usr/share/man/man1/ngettext.1
+legacy pkg=SUNWgnu-gettext \
+    desc="GNU gettext - message handling utilities (0.16.1)" \
+    name="GNU gettext"
+license gettext.license license=GPLv2
+link path=usr/bin/ggettext target=../gnu/bin/gettext facet.compat.gnulinks=true
+link path=usr/bin/gmsgfmt target=../gnu/bin/msgfmt facet.compat.gnulinks=true
+link path=usr/bin/gxgettext target=../gnu/bin/xgettext facet.compat.gnulinks=true
+link path=usr/share/man/man1/ggettext.1 \
+    target=../../../gnu/share/man/man1/gettext.1 facet.compat.gnulinks=true
+link path=usr/share/man/man1/gmsgfmt.1 \
+    target=../../../gnu/share/man/man1/msgfmt.1 facet.compat.gnulinks=true
+link path=usr/share/man/man1/gxgettext.1 \
+    target=../../../gnu/share/man/man1/xgettext.1 facet.compat.gnulinks=true

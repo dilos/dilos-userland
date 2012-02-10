@@ -1,0 +1,26 @@
+Index: squid-3.1.18/helpers/negotiate_auth/squid_kerb_auth/configure
+===================================================================
+--- squid-3.1.18/helpers/negotiate_auth/squid_kerb_auth/configure
++++ squid-3.1.18/helpers/negotiate_auth/squid_kerb_auth/configure
+@@ -4833,7 +4833,7 @@ fi
+ 		    check_mit
+                   fi
+                   ;;
+-           SunOS) pkginfo SUNWgss >/dev/null 2>&1
++           SunOS) ls -l /usr/lib/libgss.so.1 >/dev/null 2>&1
+                   if test $? = 0 ; then
+                     check_seam
+ 		  else
+Index: squid-3.1.18/helpers/negotiate_auth/squid_kerb_auth/configure.ac
+===================================================================
+--- squid-3.1.18/helpers/negotiate_auth/squid_kerb_auth/configure.ac
++++ squid-3.1.18/helpers/negotiate_auth/squid_kerb_auth/configure.ac
+@@ -299,7 +299,7 @@ if test "$enable_arg" = "no"; then
+ 		    check_mit
+                   fi
+                   ;;
+-           SunOS) pkginfo SUNWgss >/dev/null 2>&1
++           SunOS) ls -l /usr/lib/libgss.so.1 >/dev/null 2>&1
+                   if test $? = 0 ; then
+                     check_seam
+ 		  else 

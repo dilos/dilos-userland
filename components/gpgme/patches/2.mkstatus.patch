@@ -1,0 +1,19 @@
+Index: src/mkstatus
+===================================================================
+--- src/mkstatus
++++ src/mkstatus
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!/bin/bash
+ # mkstatus - Extract error strings from rungpg.h
+ #            and create a lookup table
+ #	Copyright (C) 2000 Werner Koch (dd9jn)
+@@ -38,7 +38,7 @@ static struct status_table_s status_tabl
+ {
+ EOF
+ 
+-awk '
++nawk '
+ /GPGME_STATUS_ENTER/      { okay = 1 }
+ !okay                     { next }
+ /}/                       { exit 0 }

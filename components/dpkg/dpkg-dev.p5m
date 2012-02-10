@@ -1,0 +1,115 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+# Copyright (c) 2011, Nexneta Inc. All rights reserved.
+#
+
+<transform file path=usr.*/man/.+ -> default mangler.man.stability uncommitted>
+set name=pkg.fmri \
+    value=pkg:/dpkg-dev@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.description \
+    value="This package provides the development tools (including dpkg-source)\
+    required to unpack, build and upload Debian source packages.\
+    \
+    Most Debian source packages will require additional tools to build;\
+    for example, most packages need make and the C compiler gcc."
+
+set name=pkg.summary value="Debian package development tools"
+
+set name=info.classification \
+    value=org.opensolaris.category.2008:System/Packaging
+set name=info.source_url value=$(COMPONENT_ARCHIVE_URL)
+
+#set name=info.upstream_url value=http://www.ntp.org/
+#set name=opensolaris.arc_url \
+#    value=http://arc.opensolaris.org/caselog/PSARC/2009/244
+
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+
+dir path=/etc
+dir path=/etc/dpkg
+dir path=/usr
+dir path=/usr/bin
+
+dir path=/usr/share
+dir path=/usr/share/doc
+dir path=/usr/share/doc/dpkg-dev
+dir path=/usr/share/lintian
+dir path=/usr/share/lintian/overrides
+dir path=/usr/share/man
+dir path=/usr/share/man/man1
+dir path=/usr/share/man/man5
+
+file shlibs.default path=/etc/dpkg/shlibs.default
+file shlibs.override path=/etc/dpkg/shlibs.override
+
+file path=/usr/bin/dpkg-architecture
+file path=/usr/bin/dpkg-buildflags
+file path=/usr/bin/dpkg-buildpackage
+file path=/usr/bin/dpkg-checkbuilddeps
+file path=/usr/bin/dpkg-distaddfile
+file path=/usr/bin/dpkg-genchanges
+file path=/usr/bin/dpkg-gencontrol
+file path=/usr/bin/dpkg-gensymbols
+file path=/usr/bin/dpkg-mergechangelogs
+file path=/usr/bin/dpkg-name
+file path=/usr/bin/dpkg-parsechangelog
+file path=/usr/bin/dpkg-scanpackages
+file path=/usr/bin/dpkg-scansources
+file path=/usr/bin/dpkg-shlibdeps
+file path=/usr/bin/dpkg-source
+file path=/usr/bin/dpkg-vendor
+
+file path=/usr/share/man/man1/dpkg-architecture.1
+file path=/usr/share/man/man1/dpkg-buildflags.1
+file path=/usr/share/man/man1/dpkg-buildpackage.1
+file path=/usr/share/man/man1/dpkg-checkbuilddeps.1
+file path=/usr/share/man/man1/dpkg-distaddfile.1
+file path=/usr/share/man/man1/dpkg-genchanges.1
+file path=/usr/share/man/man1/dpkg-gencontrol.1
+file path=/usr/share/man/man1/dpkg-gensymbols.1
+file path=/usr/share/man/man1/dpkg-mergechangelogs.1
+file path=/usr/share/man/man1/dpkg-name.1
+file path=/usr/share/man/man1/dpkg-parsechangelog.1
+file path=/usr/share/man/man1/dpkg-scanpackages.1
+file path=/usr/share/man/man1/dpkg-scansources.1
+file path=/usr/share/man/man1/dpkg-shlibdeps.1
+file path=/usr/share/man/man1/dpkg-source.1
+file path=/usr/share/man/man1/dpkg-vendor.1
+file path=/usr/share/man/man5/deb-control.5
+file path=/usr/share/man/man5/deb-extra-override.5
+file path=/usr/share/man/man5/deb-old.5
+file path=/usr/share/man/man5/deb-override.5
+file path=/usr/share/man/man5/deb-shlibs.5
+file path=/usr/share/man/man5/deb-split.5
+file path=/usr/share/man/man5/deb-substvars.5
+file path=/usr/share/man/man5/deb-symbols.5
+file path=/usr/share/man/man5/deb-triggers.5
+file path=/usr/share/man/man5/deb-version.5
+file path=/usr/share/man/man5/deb.5
+
+license COPYING license=GPLv2
+
+depend fmri=dpkg type=require
+depend fmri=library/perl-5/dpkg type=require
+depend fmri=text/gnu-patch type=require
+depend fmri=developer/build/gnu-make type=require
+depend fmri=developer/gnu-binutils type=require

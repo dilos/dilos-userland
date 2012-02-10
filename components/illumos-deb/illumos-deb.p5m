@@ -1,0 +1,42 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+# Copyright (c) 2011, Igor Kozhukhov. All rights reserved.
+#
+
+set name=pkg.fmri value=pkg:/developer/illumos-deb@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.summary value="Generate DEB packages from illumos-gate"
+set name=info.classification value="org.opensolaris.category.2008:Developer"
+#set name=info.upstream_url value=$(COMPONENT_PROJECT_URL)
+#set name=info.source_url value=$(COMPONENT_ARCHIVE_URL)
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+#license $(COPYRIGHT_FILE) license='$(COPYRIGHTS)'
+
+dir  path=usr
+dir  path=usr/src
+dir  path=usr/src/illumos-deb
+file path=usr/src/illumos-deb/MFT.pm
+file path=usr/src/illumos-deb/Makefile
+file usr/src/illumos-deb/Makefile.conf path=usr/src/illumos-deb/Makefile.conf.example
+file path=usr/src/illumos-deb/README.txt
+file path=usr/src/illumos-deb/bldpkg.sh mode=0555
+file path=usr/src/illumos-deb/ips2deb.pl mode=0555
+file path=usr/src/illumos-deb/ips2deb.replaces

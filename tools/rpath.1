@@ -1,0 +1,96 @@
+.\" ident	"@(#)rpath.1	1.3	07/06/13 SMI"
+.\" Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
+.\" Use is subject to license terms.
+.\"
+.\" CDDL HEADER START
+.\"
+.\" The contents of this file are subject to the terms of the
+.\" Common Development and Distribution License (the "License").
+.\" You may not use this file except in compliance with the License.
+.\"
+.\" You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+.\" or http://www.opensolaris.org/os/licensing.
+.\" See the License for the specific language governing permissions
+.\" and limitations under the License.
+.\"
+.\" When distributing Covered Code, include this CDDL HEADER in each
+.\" file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+.\" If applicable, add the following below this CDDL HEADER, with the
+.\" fields enclosed by brackets "[]" replaced with your own identifying
+.\" information: Portions Copyright [yyyy] [name of copyright owner]
+.\"
+.\" CDDL HEADER END
+.\"
+.TH rpath 1 "7 Jun 2007"
+.SH NAME
+.I rpath
+\- set/get runpath of ELF dynamic objects
+.SH SYNOPSIS
+\fBrpath [-dr] file [runpath]\fP
+.LP
+.SH DESCRIPTION
+.IX "OS-Net build tools" "rpath" "" "\fBrpath\fP"
+.LP
+.I rpath
+can display, modify, or delete the runpath of a dynamic ELF object.
+.sp
+If called without a runpath argument and without the -r option, 
+the current runpath, if any, is written to stdout. If -r is specified,
+the existing runpath is removed. If runpath is supplied, the runpath
+of the object is set to the new value.
+.RE
+.sp
+.LP
+.SH OPTIONS
+.LP
+The following options are supported:
+.TP 4
+.B \-d
+Cause detailed ELF information about the ELF file and the changes
+being made to it to be written to stderr.
+.TP
+.B \-r
+Instead of adding or modifying the file runpath,
+.I rpath
+removes any DT_RPATH or DT_RUNPATH entries from the dynamic section
+of the file. This action completely removes any existing
+from the file. When this option is used, 
+.I rpath
+does not allow the runpath argument.
+.RE
+.LP
+.SH SEE ALSO
+.B elfdump(1)
+.SH NOTES
+Not all files can be modified:
+.TP 4
+\(bu
+The desired string must already exist in the dynamic string
+table, or there must be enough room in the reserved
+section at the end (DT_SUNW_STRPAD) for the new
+string to be added.
+.RE
+.TP 4
+\(bu
+The dynamic section must already have a DT_RPATH or DT_RUNPATH
+element, or there must be an extra DT_NULL slot at the
+end where a DT_RUNPATH can be inserted.
+.LP
+Historically, ELF objects have not had the room necessary to add
+a string or a dynamic element to an existing file, and changes of
+this nature have not been possible. This changed in Solaris
+Nevada (proto Solaris 11) build 61 with the integration of:
+.sp
+.in +3
+.nf
+PSARC 2007/127 Reserved space for editing ELF dynamic sections
+6516118 Reserved space needed in ELF dynamic section and string table
+.fo
+.in -3
+.sp
+Please note that the amount of space available for adding new strings
+is fairily small, and that each added string consumes some of it.
+It may still not be possible to add an extremely long runpath to a
+file. We strongly recommend that you consider the use of the $ORIGIN
+token for your runpath, as described in the ld and ld.so.1 manpages,
+and the Linkers and Libraries Guide.

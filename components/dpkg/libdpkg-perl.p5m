@@ -1,0 +1,153 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+# Copyright (c) 2011, Nexneta Inc. All rights reserved.
+#
+
+<transform file path=usr.*/man/.+ -> default mangler.man.stability uncommitted>
+
+set name=pkg.fmri value=pkg:/library/perl-5/dpkg@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.description \
+    value="This package provides the perl modules used by the scripts\
+    in dpkg-dev. They cover a wide range of functionalities. Among them\
+    there are the following modules:\
+    \
+    - Dpkg::Arch: manipulate Debian architecture information\
+    - Dpkg::BuildOptions: parse and manipulate DEB_BUILD_OPTIONS\
+    - Dpkg::Changelog: parse Debian changelogs\
+    - Dpkg::Checksums: generate and parse checksums\
+    - Dpkg::Compression::Process: wrapper around compression tools\
+    - Dpkg::Compression::FileHandle: transparently (de)compress files\
+    - Dpkg::Control: parse and manipulate Debian control information\
+    (.dsc, .changes, Packages/Sources entries, etc.)\
+    - Dpkg::Deps: parse and manipulate dependencies\
+    - Dpkg::ErrorHandling: common error functions\
+    - Dpkg::Index: collections of Dpkg::Control (Packages/Sources files for\
+    example)\
+    - Dpkg::IPC: spawn sub-processes and feed/retrieve data\
+    - Dpkg::Substvars: substitute variables in strings\
+    - Dpkg::Vendor: identify current distribution vendor\
+    - Dpkg::Version: parse and manipulate Debian package versions\
+    \
+    All the packages listed in Suggests or Recommends are used by some of the modules."
+
+set name=pkg.summary value="Dpkg perl modules"
+
+set name=info.classification \
+    value=org.opensolaris.category.2008:System/Packaging
+set name=info.source_url value=$(COMPONENT_ARCHIVE_URL)
+#set name=info.upstream_url value=http://www.ntp.org/
+#set name=opensolaris.arc_url \
+#    value=http://arc.opensolaris.org/caselog/PSARC/2009/244
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+
+dir path=/usr
+dir path=/usr/lib
+dir path=/usr/lib/dpkg
+dir path=/usr/lib/dpkg/parsechangelog
+dir path=/usr/perl5
+dir path=/usr/perl5/vendor_perl
+dir path=/usr/perl5/vendor_perl/5.12
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg/Changelog
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg/Changelog/Entry
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg/Compression
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg/Control
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg/Interface
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg/Shlibs
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg/Source
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Package
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Package/V3
+dir path=/usr/perl5/vendor_perl/5.12/Dpkg/Vendor
+dir path=/usr/share
+#dir path=/usr/share/doc
+#dir path=/usr/share/doc/libdpkg-perl
+dir path=/usr/share/lintian
+dir path=/usr/share/lintian/overrides
+
+file path=/usr/lib/dpkg/parsechangelog/debian mode=0555
+
+file path=/usr/perl5/vendor_perl/5.12/Dpkg.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Arch.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/BuildFlags.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/BuildOptions.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Changelog.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Changelog/Debian.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Changelog/Entry.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Changelog/Entry/Debian.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Changelog/Parse.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Checksums.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Compression.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Compression/FileHandle.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Compression/Process.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Conf.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Control.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Control/Changelog.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Control/Fields.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Control/Hash.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Control/Info.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Control/Types.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Deps.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/ErrorHandling.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Exit.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Gettext.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/IPC.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Index.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Interface/Storable.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Path.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Shlibs.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Shlibs/Cppfilt.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Shlibs/Objdump.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Shlibs/Symbol.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Shlibs/SymbolFile.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Archive.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Functions.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Package.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Package/V1.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Package/V2.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Package/V3/bzr.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Package/V3/custom.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Package/V3/git.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Package/V3/native.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Package/V3/quilt.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Source/Patch.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Substvars.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Vars.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Vendor.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Vendor/Debian.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Vendor/Default.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Vendor/Ubuntu.pm
+file path=/usr/perl5/vendor_perl/5.12/Dpkg/Version.pm
+
+#file path=/usr/share/doc/libdpkg-perl/AUTHORS
+#file path=/usr/share/doc/libdpkg-perl/README.api
+#file path=/usr/share/doc/libdpkg-perl/README.feature-removal-schedule
+#file path=/usr/share/doc/libdpkg-perl/THANKS.gz
+#file path=/usr/share/doc/libdpkg-perl/changelog.Debian.gz
+#file path=/usr/share/doc/libdpkg-perl/changelog.gz
+#file path=/usr/share/doc/libdpkg-perl/copyright
+
+file libdpkg-perl.lintian-overrides path=/usr/share/lintian/overrides/libdpkg-perl
+
+license COPYING license=GPLv2
+
+depend fmri=dpkg type=require
+depend fmri=library/perl-5/timedate type=require

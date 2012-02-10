@@ -1,0 +1,201 @@
+Index: dpkg-1.15.8.10/configure
+===================================================================
+--- dpkg-1.15.8.10/configure
++++ dpkg-1.15.8.10/configure
+@@ -10557,9 +10557,9 @@ else
+ fi
+ 
+ 
+-WFLAGS="-Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers \
+-	 -Wmissing-declarations -Wmissing-format-attribute \
+-	 -Wvla -Winit-self -Wwrite-strings -Wcast-align -Wshadow"
++WFLAGS="-Wall -Wextra -Wno-unused-parameter \
++	 -Wmissing-format-attribute \
++	 -Winit-self -Wwrite-strings -Wcast-align -Wshadow"
+ WCFLAGS="-Wdeclaration-after-statement -Wnested-externs -Wbad-function-cast \
+ 	 -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition"
+ # Temporarily here until #542031 gets fixed in ncurses
+Index: dpkg-1.15.8.10/dselect/Makefile.in
+===================================================================
+--- dpkg-1.15.8.10/dselect/Makefile.in
++++ dpkg-1.15.8.10/dselect/Makefile.in
+@@ -293,7 +293,7 @@ AM_CPPFLAGS = \
+ 	-DADMINDIR=\"$(admindir)\" -DLIBDIR=\"$(pkglibdir)\" \
+ 	-DLOCALLIBDIR=\"/usr/local/lib/dpkg\" \
+ 	-idirafter $(top_srcdir)/lib/compat \
+-	-iquote $(builddir) \
++	-I$(builddir) \
+ 	-I$(top_builddir) \
+ 	-I$(top_srcdir)/lib
+ 
+Index: dpkg-1.15.8.10/utils/start-stop-daemon.c
+===================================================================
+--- dpkg-1.15.8.10/utils/start-stop-daemon.c
++++ dpkg-1.15.8.10/utils/start-stop-daemon.c
+@@ -996,7 +996,7 @@ pid_is_exec(pid_t pid, const char *name)
+ }
+ #endif
+ 
+-#if defined(OSLinux)
++#if defined(OSLinux) || defined(OSsunos)
+ static bool
+ pid_is_user(pid_t pid, uid_t uid)
+ {
+@@ -1052,7 +1052,7 @@ pid_is_user(pid_t pid, uid_t uid)
+ }
+ #endif
+ 
+-#if defined(OSLinux)
++#if defined(OSLinux) || defined(OSsunos)
+ static bool
+ pid_is_cmd(pid_t pid, const char *name)
+ {
+@@ -1060,7 +1060,11 @@ pid_is_cmd(pid_t pid, const char *name)
+ 	FILE *f;
+ 	int c;
+ 
++#ifdef OSsunos
++	sprintf(buf, "/proc/%d/status", (int) pid);
++#else
+ 	sprintf(buf, "/proc/%d/stat", pid);
++#endif
+ 	f = fopen(buf, "r");
+ 	if (!f)
+ 		return false;
+Index: dpkg-1.15.8.10/scripts/Dpkg/Compression.pm
+===================================================================
+--- dpkg-1.15.8.10/scripts/Dpkg/Compression.pm
++++ dpkg-1.15.8.10/scripts/Dpkg/Compression.pm
+@@ -52,7 +52,8 @@ interact with the set of supported compr
+ my $COMP = {
+     "gzip" => {
+ 	"file_ext" => "gz",
+-	"comp_prog" => [ "gzip", "--no-name", "--rsyncable" ],
++#	"comp_prog" => [ "gzip", "--no-name", "--rsyncable" ],
++	"comp_prog" => [ "gzip", "--no-name" ],
+ 	"decomp_prog" => [ "gunzip" ],
+     },
+     "bzip2" => {
+Index: dpkg-1.15.8.10/src/help.c
+===================================================================
+--- dpkg-1.15.8.10/src/help.c
++++ dpkg-1.15.8.10/src/help.c
+@@ -88,11 +88,19 @@ void checkpath(void) {
+     TAR,
+     FIND,
+     BACKEND,
++#if !defined(__sun)
+     "ldconfig",
++#else
++    "crle",
++#endif
+ #if WITH_START_STOP_DAEMON
+     "start-stop-daemon",
+ #endif    
++#if !defined(__sun)
+     "update-rc.d",
++#else
++    "svcadm",
++#endif
+     NULL
+   };
+ 
+Index: dpkg-1.15.8.10/scripts/Dpkg/Shlibs.pm
+===================================================================
+--- dpkg-1.15.8.10/scripts/Dpkg/Shlibs.pm
++++ dpkg-1.15.8.10/scripts/Dpkg/Shlibs.pm
+@@ -32,8 +32,8 @@ use Dpkg::Path qw(resolve_symlink canonp
+ use Dpkg::Arch qw(debarch_to_gnutriplet get_build_arch get_host_arch);
+ 
+ use constant DEFAULT_LIBRARY_PATH =>
+-    qw(/lib /usr/lib /lib32 /usr/lib32 /lib64 /usr/lib64
+-       /emul/ia32-linux/lib /emul/ia32-linux/usr/lib);
++    qw(/lib /usr/lib /lib/amd64 /usr/lib/amd64
++       /usr/gnu/lib /usr/gnu/lib/amd64);
+ 
+ # Adjust set of directories to consider when we're in a situation of a
+ # cross-build or a build of a cross-compiler
+Index: dpkg-1.15.8.10/scripts/Makefile.in
+===================================================================
+--- dpkg-1.15.8.10/scripts/Makefile.in
++++ dpkg-1.15.8.10/scripts/Makefile.in
+@@ -986,7 +986,7 @@ install-data-local:
+ @BUILD_POD_DOC_TRUE@	$(mkdir_p) $(DESTDIR)$(man3dir)
+ @BUILD_POD_DOC_TRUE@	for module in $(nobase_dist_perllib_DATA); do \
+ @BUILD_POD_DOC_TRUE@	    name=`echo $$module | sed -e 's|/|::|g' -e 's/\.pm$$//'`; \
+-@BUILD_POD_DOC_TRUE@	    pod2man --utf8 --center=libdpkg-perl --release=$(VERSION) \
++@BUILD_POD_DOC_TRUE@	    pod2man --center=libdpkg-perl --release=$(VERSION) \
+ @BUILD_POD_DOC_TRUE@		--name="$$name"	--section=3 $(srcdir)/$$module \
+ @BUILD_POD_DOC_TRUE@		>$(DESTDIR)$(man3dir)/$$name.3; \
+ @BUILD_POD_DOC_TRUE@	    test -s $(DESTDIR)$(man3dir)/$$name.3 || \
+Index: dpkg-1.15.8.10/cputable
+===================================================================
+--- dpkg-1.15.8.10/cputable
++++ dpkg-1.15.8.10/cputable
+@@ -16,7 +16,7 @@
+ # Column 5 is the endianness (byte ordering in numbers)
+ #
+ # <Debian name>	<GNU name>	<config.guess regex>	<Bits>	<Endianness>
+-i386		i486		(i[3456]86|pentium)	32	little
++i386		i386		(i[3456]86|pentium)	32	little
+ ia64		ia64		ia64			64	little
+ alpha		alpha		alpha.*			64	little
+ amd64		x86_64		x86_64			64	little
+Index: dpkg-1.15.8.10/ostable
+===================================================================
+--- dpkg-1.15.8.10/ostable
++++ dpkg-1.15.8.10/ostable
+@@ -28,6 +28,6 @@ bsd-darwin		darwin			darwin[^-]*
+ bsd-freebsd		freebsd			freebsd[^-]*
+ bsd-netbsd		netbsd			netbsd[^-]*
+ bsd-openbsd		openbsd			openbsd[^-]*
+-sysv-solaris		solaris			solaris[^-]*
++sysv-solaris		pc-solaris2.11		solaris[^-]*
+ uclibceabi-uclinux	uclinux-uclibceabi	uclinux[^-]*-uclibceabi
+ uclibc-uclinux		uclinux-uclibc		uclinux[^-]*(-uclibc.*)?
+Index: dpkg-1.15.8.10/src/archives.c
+===================================================================
+--- dpkg-1.15.8.10/src/archives.c
++++ dpkg-1.15.8.10/src/archives.c
+@@ -748,7 +748,7 @@ tarobject(void *ctx, struct tar_entry *t
+     varbufaddstr(&hardlinkfn,instdir); varbufaddc(&hardlinkfn,'/');
+     varbufaddstr(&hardlinkfn, ti->linkname);
+     linknode = findnamenode(ti->linkname, 0);
+-    if (linknode->flags & fnnf_deferred_rename)
++    if (linknode->flags & (fnnf_deferred_rename|fnnf_new_conff))
+       varbufaddstr(&hardlinkfn, DPKGNEWEXT);
+     varbufaddc(&hardlinkfn, '\0');
+     if (link(hardlinkfn.buf,fnamenewvb.buf))
+Index: dpkg-1.15.8.10/doc/Doxyfile.in
+===================================================================
+--- dpkg-1.15.8.10/doc/Doxyfile.in
++++ dpkg-1.15.8.10/doc/Doxyfile.in
+@@ -1324,7 +1324,7 @@ EXTERNAL_GROUPS        = YES
+ # The PERL_PATH should be the absolute path and name of the perl script
+ # interpreter (i.e. the result of `which perl').
+ 
+-PERL_PATH              = /usr/bin/perl
++PERL_PATH              = /usr/perl5/5.12/bin/perl
+ 
+ #---------------------------------------------------------------------------
+ # Configuration options related to the dot tool
+Index: dpkg-1.15.8.10/scripts/dpkg-maintscript-helper.sh
+===================================================================
+--- dpkg-1.15.8.10/scripts/dpkg-maintscript-helper.sh
++++ dpkg-1.15.8.10/scripts/dpkg-maintscript-helper.sh
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!/bin/bash
+ #
+ # Copyright © 2010 Raphaël Hertzog <hertzog@debian.org>
+ # Copyright © 2008 Joey Hess <joeyh@debian.org>
+Index: dpkg-1.15.8.10/scripts/dpkg-source.pl
+===================================================================
+--- dpkg-1.15.8.10/scripts/dpkg-source.pl
++++ dpkg-1.15.8.10/scripts/dpkg-source.pl
+@@ -1,4 +1,4 @@
+-#! /usr/bin/perl
++#!/usr/bin/perl
+ # vim: set et sw=4 ts=8
+ #
+ # dpkg-source

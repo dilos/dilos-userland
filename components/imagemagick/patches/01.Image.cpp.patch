@@ -1,0 +1,12 @@
+Index: ImageMagick-6.3.4/Magick++/lib/Image.cpp
+===================================================================
+--- ImageMagick-6.3.4/Magick++/lib/Image.cpp
++++ ImageMagick-6.3.4/Magick++/lib/Image.cpp
+@@ -12,6 +12,7 @@
+ #include <string.h>
+ #include <errno.h>
+ #include <math.h>
++#include <stdlib.h>
+ 
+ using namespace std;
+ 

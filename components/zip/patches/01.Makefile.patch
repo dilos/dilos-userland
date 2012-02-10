@@ -1,0 +1,13 @@
+Index: zip30/unix/Makefile
+===================================================================
+--- zip30/unix/Makefile
++++ zip30/unix/Makefile
+@@ -22,7 +22,7 @@ SHELL = /bin/sh
+ LN = ln -s
+ 
+ # (to use the GNU compiler, change cc to gcc in CC)
+-CC = cc
++CC ?= cc
+ BIND = $(CC)
+ AS = $(CC) -c
+ CPP = /lib/cpp

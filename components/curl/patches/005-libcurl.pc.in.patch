@@ -1,0 +1,22 @@
+Index: libcurl.pc.in
+===================================================================
+--- libcurl.pc.in
++++ libcurl.pc.in
+@@ -26,7 +26,7 @@
+ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+ libdir=@libdir@
+-includedir=@includedir@
++includedir=@includedir@/curl
+ supported_protocols="@SUPPORT_PROTOCOLS@"
+ supported_features="@SUPPORT_FEATURES@"
+ 
+@@ -34,6 +34,6 @@ Name: libcurl
+ URL: http://curl.haxx.se/
+ Description: Library to transfer files with ftp, http, etc.
+ Version: @VERSION@
+-Libs: -L${libdir} -lcurl @LIBS@
+-Libs.private: @LIBCURL_LIBS@ @LIBS@
++Libs: -L${libdir} -lcurl
++Libs.private: @LIBCURL_LIBS@
+ Cflags: -I${includedir}

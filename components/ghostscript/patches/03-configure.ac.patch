@@ -1,0 +1,17 @@
+Index: ghostscript-9.00/configure.ac
+===================================================================
+--- ghostscript-9.00/configure.ac
++++ ghostscript-9.00/configure.ac
+@@ -1158,9 +1158,9 @@ case `uname` in
+ 	DYNAMIC_LDFLAGS="-dynamiclib"
+ 	DYNAMIC_LIBS=""
+ 	;;
+-	SunOS)
+-	DYNAMIC_CFLAGS="-KPIC"
+-	DYNAMIC_LDFLAGS="-G"
++	SunOS*)
++	DYNAMIC_CFLAGS="-fPIC"
++	DYNAMIC_LDFLAGS="-fPIC -shared"
+ 	DYNAMIC_LIBS=""
+ 	;;
+ esac

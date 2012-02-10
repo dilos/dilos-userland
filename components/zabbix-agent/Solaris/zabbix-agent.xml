@@ -1,0 +1,16 @@
+<?xml version='1.0'?>
+<!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'>
+<service_bundle type='manifest' name='export'>
+	<service name='application/management/zabbix-agent' type='service' version='0'>
+		<create_default_instance enabled='false'/>
+		<single_instance/>
+			<dependency name='fs' grouping='require_all' restart_on='none' type='service'>
+				<service_fmri value='svc:/system/filesystem/local'/>
+			</dependency>
+			<dependency name='net' grouping='require_all' restart_on='none' type='service'>
+				<service_fmri value='svc:/network/service'/>
+			</dependency>
+		<exec_method name='start' type='method' exec='/usr/sbin/zabbix_agentd' timeout_seconds='10'/>
+		<exec_method name='stop' type='method' exec=':kill' timeout_seconds='60'/>
+	</service>
+</service_bundle>

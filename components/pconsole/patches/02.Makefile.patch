@@ -1,0 +1,38 @@
+Index: pconsole-1.0/Makefile
+===================================================================
+--- pconsole-1.0/Makefile
++++ pconsole-1.0/Makefile
+@@ -30,10 +30,10 @@ LFLAGS =
+ LIBS =
+ INCLUDE = include
+ 
+-INSTALL = /usr/bin/install -c
+-INSTALL_PROGRAM = /usr/bin/install -c -m 0750
+-INSTALL_SCRIPT = /usr/bin/install -c -m 0750
+-INSTALL_DATA = /usr/bin/install -c -m 0640
++INSTALL = ginstall
++INSTALL_PROGRAM = $(INSTALL) -m 0750
++INSTALL_SCRIPT = $(INSTALL) -m 0750
++INSTALL_DATA = $(INSTALL) -m 0640
+ 
+ .c.o:
+ 	$(CC) -I$(INCLUDE) $(CFLAGS) -c $<
+Index: pconsole-1.0/Makefile.in
+===================================================================
+--- pconsole-1.0/Makefile.in
++++ pconsole-1.0/Makefile.in
+@@ -79,10 +79,10 @@ depend dep .depend:
+ install: all
+ 	@( \
+ 		echo "installing pconsole ..."; \
+-		mkdir -p $(bindir) 2>/dev/null ; \
+-		@INSTALL_PROGRAM@ pconsole $(bindir) ;		\
+-		@INSTALL_SCRIPT@ pconsole.sh $(bindir) ;	\
+-		@INSTALL_SCRIPT@ ssh.sh $(bindir) ;			\
++		mkdir -p $(DESTDIR)$(bindir) 2>/dev/null ; \
++		@INSTALL_PROGRAM@ pconsole $(DESTDIR)$(bindir) ;	\
++		@INSTALL_SCRIPT@ pconsole.sh $(DESTDIR)$(bindir) ;	\
++		@INSTALL_SCRIPT@ ssh.sh $(DESTDIR)$(bindir) ;		\
+ 		echo ;	\
+ 		echo "Note: You may want to make pconsole setuid root with the following commands:";	\
+ 		echo ;	\

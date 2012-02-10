@@ -1,0 +1,14 @@
+Index: gdb-7.1/gdb/solib-svr4.c
+===================================================================
+--- gdb-7.1/gdb/solib-svr4.c
++++ gdb-7.1/gdb/solib-svr4.c
+@@ -124,6 +124,9 @@ svr4_same_1 (const char *gdb_so_name, co
+   if (strcmp (gdb_so_name, "/usr/lib/ld.so.1") == 0
+       && strcmp (inferior_so_name, "/lib/ld.so.1") == 0)
+     return 1;
++  if (strcmp (gdb_so_name, "/usr/lib/amd64/ld.so.1") == 0
++      && strcmp (inferior_so_name, "/lib/amd64/ld.so.1") == 0)
++    return 1;
+ 
+   /* Similarly, we observed the same issue with sparc64, but with
+      different locations.  */

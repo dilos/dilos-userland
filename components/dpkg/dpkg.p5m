@@ -1,0 +1,316 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+# Copyright (c) 2011, Nexneta Inc. All rights reserved.
+#
+
+<transform file path=usr.*/man/.+ -> default mangler.man.stability uncommitted>
+set name=pkg.fmri \
+    value=pkg:/dpkg@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.description \
+    value="This package provides the low-level infrastructure for handling the\
+    installation and removal of Debian software packages.\
+    \
+    For Debian package development tools, install dpkg-dev."
+
+set name=pkg.summary value="Debian package management system"
+
+set name=info.classification \
+    value=org.opensolaris.category.2008:System/Packaging
+
+set name=info.source_url value=$(COMPONENT_ARCHIVE_URL)
+
+#set name=info.upstream_url value=http://www.ntp.org/
+#set name=opensolaris.arc_url \
+#    value=http://arc.opensolaris.org/caselog/PSARC/2009/244
+
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+dir path=etc
+dir path=etc/alternatives
+dir path=etc/cron.daily
+dir path=etc/dpkg
+dir path=etc/dpkg/dpkg.cfg.d
+dir path=etc/logrotate.d
+dir path=usr
+dir path=usr/bin
+dir path=usr/sbin
+dir path=usr/share
+#dir path=usr/share/doc
+#dir path=usr/share/doc/dpkg
+dir path=usr/share/dpkg
+
+dir path=usr/share/lintian
+dir path=usr/share/lintian/overrides
+
+#dir path=usr/share/locale
+#dir path=usr/share/locale/ast
+#dir path=usr/share/locale/ast/LC_MESSAGES
+#dir path=usr/share/locale/bs
+#dir path=usr/share/locale/bs/LC_MESSAGES
+#dir path=usr/share/locale/ca
+#dir path=usr/share/locale/ca/LC_MESSAGES
+#dir path=usr/share/locale/cs
+#dir path=usr/share/locale/cs/LC_MESSAGES
+#dir path=usr/share/locale/da
+#dir path=usr/share/locale/da/LC_MESSAGES
+#dir path=usr/share/locale/de
+#dir path=usr/share/locale/de/LC_MESSAGES
+#dir path=usr/share/locale/dz
+#dir path=usr/share/locale/dz/LC_MESSAGES
+#dir path=usr/share/locale/el
+#dir path=usr/share/locale/el/LC_MESSAGES
+#dir path=usr/share/locale/eo
+#dir path=usr/share/locale/eo/LC_MESSAGES
+#dir path=usr/share/locale/es
+#dir path=usr/share/locale/es/LC_MESSAGES
+#dir path=usr/share/locale/et
+#dir path=usr/share/locale/et/LC_MESSAGES
+#dir path=usr/share/locale/eu
+#dir path=usr/share/locale/eu/LC_MESSAGES
+#dir path=usr/share/locale/fr
+#dir path=usr/share/locale/fr/LC_MESSAGES
+#dir path=usr/share/locale/gl
+#dir path=usr/share/locale/gl/LC_MESSAGES
+#dir path=usr/share/locale/hu
+#dir path=usr/share/locale/hu/LC_MESSAGES
+#dir path=usr/share/locale/id
+#dir path=usr/share/locale/id/LC_MESSAGES
+#dir path=usr/share/locale/it
+#dir path=usr/share/locale/it/LC_MESSAGES
+#dir path=usr/share/locale/ja
+#dir path=usr/share/locale/ja/LC_MESSAGES
+#dir path=usr/share/locale/km
+#dir path=usr/share/locale/km/LC_MESSAGES
+#dir path=usr/share/locale/ko
+#dir path=usr/share/locale/ko/LC_MESSAGES
+#dir path=usr/share/locale/ku
+#dir path=usr/share/locale/ku/LC_MESSAGES
+#dir path=usr/share/locale/lt
+#dir path=usr/share/locale/lt/LC_MESSAGES
+#dir path=usr/share/locale/mr
+#dir path=usr/share/locale/mr/LC_MESSAGES
+#dir path=usr/share/locale/nb
+#dir path=usr/share/locale/nb/LC_MESSAGES
+#dir path=usr/share/locale/ne
+#dir path=usr/share/locale/ne/LC_MESSAGES
+#dir path=usr/share/locale/nl
+#dir path=usr/share/locale/nl/LC_MESSAGES
+#dir path=usr/share/locale/nn
+#dir path=usr/share/locale/nn/LC_MESSAGES
+#dir path=usr/share/locale/pa
+#dir path=usr/share/locale/pa/LC_MESSAGES
+#dir path=usr/share/locale/pl
+#dir path=usr/share/locale/pl/LC_MESSAGES
+#dir path=usr/share/locale/pt
+#dir path=usr/share/locale/pt/LC_MESSAGES
+#dir path=usr/share/locale/pt_BR
+#dir path=usr/share/locale/pt_BR/LC_MESSAGES
+#dir path=usr/share/locale/ro
+#dir path=usr/share/locale/ro/LC_MESSAGES
+#dir path=usr/share/locale/ru
+#dir path=usr/share/locale/ru/LC_MESSAGES
+#dir path=usr/share/locale/sk
+#dir path=usr/share/locale/sk/LC_MESSAGES
+#dir path=usr/share/locale/sv
+#dir path=usr/share/locale/sv/LC_MESSAGES
+#dir path=usr/share/locale/th
+#dir path=usr/share/locale/th/LC_MESSAGES
+#dir path=usr/share/locale/tl
+#dir path=usr/share/locale/tl/LC_MESSAGES
+#dir path=usr/share/locale/vi
+#dir path=usr/share/locale/vi/LC_MESSAGES
+#dir path=usr/share/locale/zh_CN
+#dir path=usr/share/locale/zh_CN/LC_MESSAGES
+#dir path=usr/share/locale/zh_TW
+#dir path=usr/share/locale/zh_TW/LC_MESSAGES
+
+#dir path=usr/share/man
+#dir path=usr/share/man/de
+#dir path=usr/share/man/de/man1
+#dir path=usr/share/man/de/man5
+#dir path=usr/share/man/de/man8
+#dir path=usr/share/man/es
+#dir path=usr/share/man/es/man1
+#dir path=usr/share/man/es/man5
+#dir path=usr/share/man/es/man8
+#dir path=usr/share/man/fr
+#dir path=usr/share/man/fr/man1
+#dir path=usr/share/man/fr/man5
+#dir path=usr/share/man/fr/man8
+#dir path=usr/share/man/hu
+#dir path=usr/share/man/hu/man5
+#dir path=usr/share/man/man1
+#dir path=usr/share/man/man5
+#dir path=usr/share/man/man8
+#dir path=usr/share/man/pl
+#dir path=usr/share/man/pl/man1
+#dir path=usr/share/man/pl/man5
+#dir path=usr/share/man/pl/man8
+#dir path=usr/share/man/sv
+#dir path=usr/share/man/sv/man1
+#dir path=usr/share/man/sv/man5
+#dir path=usr/share/man/sv/man8
+
+dir path=var
+dir path=var/lib
+dir path=var/lib/dpkg
+dir path=var/lib/dpkg/alternatives
+dir path=var/lib/dpkg/info
+dir path=var/lib/dpkg/parts
+dir path=var/lib/dpkg/updates
+
+file path=etc/alternatives/README
+file dpkg.cron.daily path=etc/cron.daily/dpkg
+file dpkg.cfg path=etc/dpkg/dpkg.cfg
+file dpkg.logrotate path=etc/logrotate.d/dpkg
+
+file path=usr/sbin/start-stop-daemon
+
+file path=usr/bin/dpkg
+file path=usr/bin/dpkg-deb
+file path=usr/bin/dpkg-divert
+file path=usr/bin/dpkg-maintscript-helper
+file path=usr/bin/dpkg-query
+file path=usr/bin/dpkg-split
+file dpkg.lintian-overrides path=usr/bin/dpkg-statoverride
+file path=usr/bin/dpkg-trigger
+file path=usr/bin/update-alternatives
+
+#file path=usr/sbin/install-info
+
+file tables/archtable path=usr/share/dpkg/archtable
+file path=usr/share/dpkg/cputable
+file path=usr/share/dpkg/ostable
+file path=usr/share/dpkg/triplettable
+
+#file path=usr/share/locale/ast/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/bs/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/ca/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/cs/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/da/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/de/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/dz/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/el/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/eo/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/es/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/et/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/eu/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/fr/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/gl/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/hu/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/id/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/it/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/ja/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/km/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/ko/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/ku/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/lt/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/mr/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/nb/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/ne/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/nl/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/nn/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/pa/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/pl/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/pt/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/pt_BR/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/ro/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/ru/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/sk/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/sv/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/th/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/tl/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/vi/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/zh_CN/LC_MESSAGES/dpkg.mo
+#file path=usr/share/locale/zh_TW/LC_MESSAGES/dpkg.mo
+
+#file path=usr/share/man/de/man1/dpkg-deb.1
+#file path=usr/share/man/de/man1/dpkg-maintscript-helper.1
+#file path=usr/share/man/de/man1/dpkg-query.1
+#file path=usr/share/man/de/man1/dpkg-split.1
+#file path=usr/share/man/de/man1/dpkg-trigger.1
+#file path=usr/share/man/de/man1/dpkg.1
+#file path=usr/share/man/de/man5/dpkg.cfg.5
+#file path=usr/share/man/de/man8/dpkg-divert.8
+#file path=usr/share/man/de/man8/dpkg-statoverride.8
+#file path=usr/share/man/de/man8/start-stop-daemon.8
+#file path=usr/share/man/de/man8/update-alternatives.8
+#file path=usr/share/man/es/man1/dpkg-deb.1
+#file path=usr/share/man/es/man1/dpkg-maintscript-helper.1
+#file path=usr/share/man/es/man1/dpkg-query.1
+#file path=usr/share/man/es/man1/dpkg-split.1
+#file path=usr/share/man/es/man1/dpkg-trigger.1
+#file path=usr/share/man/es/man1/dpkg.1
+#file path=usr/share/man/es/man5/dpkg.cfg.5
+#file path=usr/share/man/es/man8/dpkg-divert.8
+#file path=usr/share/man/es/man8/dpkg-statoverride.8
+#file path=usr/share/man/es/man8/start-stop-daemon.8
+#file path=usr/share/man/es/man8/update-alternatives.8
+#file path=usr/share/man/fr/man1/dpkg-deb.1
+#file path=usr/share/man/fr/man1/dpkg-maintscript-helper.1
+#file path=usr/share/man/fr/man1/dpkg-query.1
+#file path=usr/share/man/fr/man1/dpkg-split.1
+#file path=usr/share/man/fr/man1/dpkg-trigger.1
+#file path=usr/share/man/fr/man1/dpkg.1
+#file path=usr/share/man/fr/man5/dpkg.cfg.5
+#file path=usr/share/man/fr/man8/dpkg-divert.8
+#file path=usr/share/man/fr/man8/dpkg-statoverride.8
+#file path=usr/share/man/fr/man8/start-stop-daemon.8
+#file path=usr/share/man/fr/man8/update-alternatives.8
+#file path=usr/share/man/hu/man5/dpkg.cfg.5
+#file path=usr/share/man/man1/dpkg-deb.1
+#file path=usr/share/man/man1/dpkg-maintscript-helper.1
+#file path=usr/share/man/man1/dpkg-query.1
+#file path=usr/share/man/man1/dpkg-split.1
+#file path=usr/share/man/man1/dpkg-trigger.1
+#file path=usr/share/man/man1/dpkg.1
+#file path=usr/share/man/man5/dpkg.cfg.5
+#file path=usr/share/man/man8/dpkg-divert.8
+#file path=usr/share/man/man8/dpkg-statoverride.8
+#file path=usr/share/man/man8/start-stop-daemon.8
+#file path=usr/share/man/man8/update-alternatives.8
+#file path=usr/share/man/pl/man1/dpkg-deb.1
+#file path=usr/share/man/pl/man1/dpkg-query.1
+#file path=usr/share/man/pl/man1/dpkg-split.1
+#file path=usr/share/man/pl/man1/dpkg-trigger.1
+#file path=usr/share/man/pl/man1/dpkg.1
+#file path=usr/share/man/pl/man5/dpkg.cfg.5
+#file path=usr/share/man/pl/man8/dpkg-divert.8
+#file path=usr/share/man/pl/man8/dpkg-statoverride.8
+#file path=usr/share/man/pl/man8/start-stop-daemon.8
+#file path=usr/share/man/pl/man8/update-alternatives.8
+#file path=usr/share/man/sv/man1/dpkg-deb.1
+#file path=usr/share/man/sv/man1/dpkg-maintscript-helper.1
+#file path=usr/share/man/sv/man1/dpkg-query.1
+#file path=usr/share/man/sv/man1/dpkg-split.1
+#file path=usr/share/man/sv/man1/dpkg-trigger.1
+#file path=usr/share/man/sv/man1/dpkg.1
+#file path=usr/share/man/sv/man5/dpkg.cfg.5
+#file path=usr/share/man/sv/man8/dpkg-divert.8
+#file path=usr/share/man/sv/man8/dpkg-statoverride.8
+#file path=usr/share/man/sv/man8/start-stop-daemon.8
+#file path=usr/share/man/sv/man8/update-alternatives.8
+
+link path=usr/sbin/dpkg-divert target=../bin/dpkg-divert
+link path=usr/sbin/dpkg-statoverride target=../bin/dpkg-statoverride
+link path=usr/sbin/update-alternatives target=../bin/update-alternatives
+
+license COPYING license=GPLv2

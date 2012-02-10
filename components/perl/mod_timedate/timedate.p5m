@@ -1,0 +1,37 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+# Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
+#
+
+# The version is specifically set to 5.8.4 until there is a version that it
+# greater than this due to the way xml-parser was originally delivered from
+# the desktop consolidation.
+set name=pkg.fmri value=pkg:/library/perl-5/timedate@5.12,$(BUILD_VERSION)
+set name=pkg.summary value="Date::Format - Date formating subroutines"
+set name=pkg.description value="This module provides routines to format dates into ASCII strings. They correspond to the C library routines strftime and ctime."
+set name=info.classification value="org.opensolaris.category.2008:Development/Perl"
+set name=info.upstream_url value=$(COMPONENT_PROJECT_URL)
+set name=info.source_url value=$(COMPONENT_ARCHIVE_URL)
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+# perl 5.12
+depend fmri=library/perl-5/timedate-512 predicate=runtime/perl-512 \
+    type=conditional

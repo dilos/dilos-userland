@@ -1,0 +1,3 @@
+
+GCC_ROOT = /usr/gcc/4.4
+COMPILER = gcc

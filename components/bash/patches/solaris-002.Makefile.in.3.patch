@@ -1,0 +1,17 @@
+--- Makefile.in	2009-12-30 10:05:40.000000000 -0800
++++ Makefile.in	2011-02-04 16:31:01.659698136 -0800
+@@ -549,10 +549,10 @@
+ 	@echo
+ 
+ bashbug: $(SUPPORT_SRC)bashbug.sh config.h Makefile $(VERSPROG)
+-	@sed -e "s%!MACHINE!%$(Machine)%" -e "s%!OS!%$(OS)%" \
+-	     -e "s%!CFLAGS!%$(CCFLAGS)%" -e "s%!CC!%$(CC)%" \
+-	     -e "s%!RELEASE!%$(Version)%" -e "s%!PATCHLEVEL!%$(PatchLevel)%" \
+-	     -e "s%!MACHTYPE!%$(MACHTYPE)%" -e "s%!RELSTATUS!%$(RELSTATUS)%" \
++	@sed -e "s^!MACHINE!^$(Machine)^" -e "s^!OS!^$(OS)^" \
++	    -e "s^!CFLAGS!^$(CCFLAGS)^" -e "s^!CC!^$(CC)^" \
++	    -e "s^!RELEASE!^$(Version)^" -e "s^!PATCHLEVEL!^$(PatchLevel)^" \
++	    -e "s^!MACHTYPE!^$(MACHTYPE)^" -e "s^!RELSTATUS!^$(RELSTATUS)^" \
+ 	     $(SUPPORT_SRC)bashbug.sh > $@
+ 	@chmod a+rx bashbug
+ 

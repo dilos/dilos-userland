@@ -1,0 +1,26 @@
+Index: xorriso-0.6.0/test/compare_file.c
+===================================================================
+--- xorriso-0.6.0/test/compare_file.c
++++ xorriso-0.6.0/test/compare_file.c
+@@ -14,7 +14,7 @@
+ */
+ 
+ #ifdef HAVE_CONFIG_H
+-#include "../config.h"
++#include "config.h"
+ #endif
+ 
+ #include <ctype.h>
+Index: xorriso-0.6.0/xorriso/make_xorriso_1.c
+===================================================================
+--- xorriso-0.6.0/xorriso/make_xorriso_1.c
++++ xorriso-0.6.0/xorriso/make_xorriso_1.c
+@@ -13,7 +13,7 @@
+ */
+ 
+ #ifdef HAVE_CONFIG_H
+-#include "../config.h"
++#include "config.h"
+ #endif
+ 
+ #include <unistd.h>

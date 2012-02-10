@@ -1,0 +1,56 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+# Copyright (c) 2011, Nexenta Systems, Inc. All rights reserved.
+#
+set name=pkg.fmri \
+    value=pkg:/system/library/libmtsk@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.summary value="libmtsk"
+set name=info.classification \
+    value=org.opensolaris.category.2008:System/Libraries
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+dir path=lib
+dir path=lib/$(MACH64)
+dir path=usr
+dir path=usr/lib
+dir path=usr/lib/$(MACH64)
+
+file path=lib/libmtsk.so.1
+file path=lib/libmtsk_db.so.1
+file path=lib/$(MACH64)/libmtsk.so.1
+file path=lib/$(MACH64)/libmtsk_db.so.1
+
+link path=lib/libmtsk.so target=libmtsk.so.1
+link path=lib/libmtsk_db.so target=libmtsk_db.so.1
+link path=lib/$(MACH64)/libmtsk.so target=libmtsk.so.1
+link path=lib/$(MACH64)/libmtsk_db.so target=libmtsk_db.so.1
+
+link path=usr/lib/libmtsk.so target=../../lib/libmtsk.so
+link path=usr/lib/libmtsk_db.so target=../../lib/libmtsk_db.so
+link path=usr/lib/$(MACH64)/libmtsk.so target=../../../lib/$(MACH64)/libmtsk.so
+link path=usr/lib/$(MACH64)/libmtsk_db.so target=../../../lib/$(MACH64)/libmtsk_db.so
+
+link path=usr/lib/libmtsk.so.1 target=../../lib/libmtsk.so.1
+link path=usr/lib/libmtsk_db.so.1 target=../../lib/libmtsk_db.so.1
+link path=usr/lib/$(MACH64)/libmtsk.so.1 target=../../../lib/$(MACH64)/libmtsk.so.1
+link path=usr/lib/$(MACH64)/libmtsk_db.so.1 target=../../../lib/$(MACH64)/libmtsk_db.so.1
+
+license LICENSE license="CDDL"

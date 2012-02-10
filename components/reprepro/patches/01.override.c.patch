@@ -1,0 +1,14 @@
+Index: reprepro-4.9.0/override.c
+===================================================================
+--- reprepro-4.9.0/override.c
++++ reprepro-4.9.0/override.c
+@@ -69,7 +69,9 @@ void override_free(struct overridefile *
+ 	if (info == NULL)
+ 		return;
+ 
++#ifdef HAVE_TDESTROY
+ 	tdestroy(info->packages, freeoverridepackage);
++#endif
+ 	while ((i = info->patterns) != NULL) {
+ 		if (i == NULL)
+ 			return;

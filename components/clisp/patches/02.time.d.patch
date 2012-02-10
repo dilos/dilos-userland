@@ -1,0 +1,13 @@
+Index: src/time.d
+===================================================================
+--- src/time.d
++++ src/time.d
+@@ -302,7 +302,7 @@ global object internal_time_to_I (const 
+  #ifdef TIME_WIN32
+   return L2_to_I(tp->dwHighDateTime,tp->dwLowDateTime);
+  #endif
+-#elif TIME_METHOD = 1
++#elif TIME_METHOD == 1
+   return UL_to_I(*tp);
+ #else
+ #error internal_time_to_I: invalid TIME_METHOD

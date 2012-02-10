@@ -1,0 +1,103 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+# Copyright (c) 2011, Nexneta Inc. All rights reserved.
+#
+
+<transform file path=usr.*/man/.+ -> default mangler.man.stability uncommitted>
+set name=pkg.fmri \
+    value=pkg:/library/dpkg-dev@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+
+set name=pkg.description \
+    value="This package provides the header files and static library necessary to develop software using libdpkg, the same library used internally by dpkg.\
+    develop software using libdpkg, the same library used internally by dpkg.\
+    \
+    Note though, that the API is to be considered volatile, and might change\
+    at any time, use at your own risk."
+set name=pkg.summary value="Debian package management static library"
+
+set name=info.classification \
+    value=org.opensolaris.category.2008:System/Packaging
+
+set name=info.source_url value=$(COMPONENT_ARCHIVE_URL)
+
+#set name=info.upstream_url value=http://www.ntp.org/
+#set name=opensolaris.arc_url \
+#    value=http://arc.opensolaris.org/caselog/PSARC/2009/244
+
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+
+#
+# directories
+#
+dir path=/usr
+dir path=/usr/include
+dir path=/usr/include/dpkg
+dir path=/usr/lib
+dir path=/usr/lib/pkgconfig
+dir path=/usr/share
+#dir path=/usr/share/doc
+#dir path=/usr/share/doc/libdpkg-dev
+dir path=/usr/share/lintian
+dir path=/usr/share/lintian/overrides
+#
+# files
+#
+file path=/usr/include/dpkg/ar.h
+file path=/usr/include/dpkg/buffer.h
+file path=/usr/include/dpkg/command.h
+file path=/usr/include/dpkg/compress.h
+file path=/usr/include/dpkg/dir.h
+file path=/usr/include/dpkg/dpkg-db.h
+file path=/usr/include/dpkg/dpkg.h
+file path=/usr/include/dpkg/file.h
+file path=/usr/include/dpkg/macros.h
+file path=/usr/include/dpkg/myopt.h
+file path=/usr/include/dpkg/parsedump.h
+file path=/usr/include/dpkg/path.h
+file path=/usr/include/dpkg/pkg-array.h
+file path=/usr/include/dpkg/pkg-format.h
+file path=/usr/include/dpkg/pkg-list.h
+file path=/usr/include/dpkg/pkg-queue.h
+file path=/usr/include/dpkg/pkg-show.h
+file path=/usr/include/dpkg/pkg.h
+file path=/usr/include/dpkg/progress.h
+file path=/usr/include/dpkg/string.h
+file path=/usr/include/dpkg/subproc.h
+file path=/usr/include/dpkg/tarfn.h
+file path=/usr/include/dpkg/trigdeferred.h
+file path=/usr/include/dpkg/triglib.h
+file path=/usr/include/dpkg/varbuf.h
+file path=/usr/lib/libdpkg.a
+file path=/usr/lib/pkgconfig/libdpkg.pc
+
+#file path=/usr/share/doc/libdpkg-dev/AUTHORS
+#file path=/usr/share/doc/libdpkg-dev/README.api
+#file path=/usr/share/doc/libdpkg-dev/README.feature-removal-schedule
+#file path=/usr/share/doc/libdpkg-dev/THANKS.gz
+#file path=/usr/share/doc/libdpkg-dev/changelog.Debian.gz
+#file path=/usr/share/doc/libdpkg-dev/changelog.gz
+#file path=/usr/share/doc/libdpkg-dev/copyright
+#file path=/usr/share/doc/libdpkg-dev/usertags.gz
+
+file libdpkg-dev.lintian-overrides path=/usr/share/lintian/overrides/libdpkg-dev
+
+license COPYING license=GPLv2

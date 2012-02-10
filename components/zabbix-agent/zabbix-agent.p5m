@@ -1,0 +1,69 @@
+#
+# CDDL HEADER START
+#
+# The contents of this file are subject to the terms of the
+# Common Development and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+#
+# You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
+# or http://www.opensolaris.org/os/licensing.
+# See the License for the specific language governing permissions
+# and limitations under the License.
+#
+# When distributing Covered Code, include this CDDL HEADER in each
+# file and include the License file at usr/src/OPENSOLARIS.LICENSE.
+# If applicable, add the following below this CDDL HEADER, with the
+# fields enclosed by brackets "[]" replaced with your own identifying
+# information: Portions Copyright [yyyy] [name of copyright owner]
+#
+# CDDL HEADER END
+#
+# Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.
+#
+
+<transform file path=usr.*/man/.+ -> default mangler.man.stability uncommitted>
+set name=pkg.fmri value=pkg:/application/management/zabbix-agent@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.summary value="Zabbix agent"
+set name=info.classification value="org.opensolaris.category.2008:Applications/System Utilities"
+set name=info.upstream-url value=$(COMPONENT_PROJECT_URL)
+set name=info.source-url value=$(COMPONENT_ARCHIVE_URL)
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+group groupname="zabbix"
+user gcos-field="Zabbix Monitoring System" username="zabbix" group="zabbix"
+
+dir  path=usr
+dir  path=usr/bin
+file path=usr/bin/zabbix_get
+file path=usr/bin/zabbix_sender
+dir  path=usr/sbin
+file path=usr/sbin/zabbix_agent
+file path=usr/sbin/zabbix_agentd
+dir  path=usr/share
+dir  path=usr/share/man
+dir  path=usr/share/man/man1
+file path=usr/share/man/man1/zabbix_get.1
+file path=usr/share/man/man1/zabbix_sender.1
+dir  path=usr/share/man/man8
+file path=usr/share/man/man8/zabbix_agentd.8
+
+dir  path=var
+dir  path=var/run
+dir  path=var/run/zabbix owner=zabbix group=zabbix
+dir  path=var/log
+dir  path=var/log/zabbix owner=zabbix group=zabbix
+
+dir  path=etc
+dir  path=etc/zabbix
+file Solaris/zabbix_agent.conf path=etc/zabbix/zabbix_agent.conf mode=0644 preserve=true
+file Solaris/zabbix_agentd.conf path=etc/zabbix/zabbix_agentd.conf mode=0644 preserve=true
+
+dir  path=lib
+dir  path=lib/svc
+dir  path=lib/svc/manifest
+dir  path=lib/svc/manifest/application
+dir  path=lib/svc/manifest/application/management
+dir  path=lib/svc/method
+file Solaris/zabbix-agent.xml path=lib/svc/manifest/application/management/zabbix-agent.xml
+
+license zabbix-agent.license license="GPLv2"
